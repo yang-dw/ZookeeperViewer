@@ -23,11 +23,15 @@ namespace ZookeeperViewer.View
         public ConnectSettingWindow()
         {
             InitializeComponent();
-            this.DataContext = new ConnectSettingWindowVM();
+            var data = new ConnectSettingWindowVM();
+            data.ConnectionString = System.IO.File.ReadAllText("C:\\Program Files\\zookeeper.txt");
+            this.DataContext = data;
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
+            var data = this.DataContext as ConnectSettingWindowVM;
+            System.IO.File.WriteAllText("C:\\Program Files\\zookeeper.txt", data.ConnectionString);
             this.DialogResult = true;
         }
 

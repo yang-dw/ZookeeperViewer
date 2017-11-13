@@ -28,7 +28,27 @@ namespace ZookeeperViewer.ViewModel
         public DelegateCommand AddNode { get; set; }
         public DelegateCommand DeleteNode { get; set; }
 
+        public void DoConnect2(string conStr)
+        {
+            var vm = new ConnectSettingWindowVM { ConnectionString = conStr };
+            try
+            {
+                this.Watcher = new ZookeeperWatcher(this);
+                _zk = new ZooKeeper(vm.ConnectionString, TimeSpan.FromMilliseconds(double.Parse(vm.Timeout)), this.Watcher);
+                this.GetZookeeperNodes();
+            }
+            catch (Exception ex)
+            {
+                _log.Fatal(ex.ToString());
+                this.DoDisconnect();
+                MessageBoxUtility.ShowError("Connect Failed : " + ex.Message);
+            }
+            finally
+            {
+                this.RaiseToolBarCanExecuteChanged();
+            }
 
+        }
         private void DoConnect()
         {
             ConnectSettingWindow win = new ConnectSettingWindow();

@@ -86,7 +86,8 @@ namespace ZookeeperViewer.ViewModel
             BindingOperations.EnableCollectionSynchronization(ListViewDataContext, _listViewDataContextLock);
             BindingOperations.EnableCollectionSynchronization(Logs, _logsLock);
 
-            Connect = new DelegateCommand(DoConnect, DoCanConnect);
+            Connect = new DelegateCommand(DoConnect);
+            //Connect = new DelegateCommand(DoConnect, DoCanConnect);
             Disconnect = new DelegateCommand(DoDisconnect, DoCanDisconnect);
             Refresh = new DelegateCommand(DoRefresh, DoCanRefresh);
             Clear = new DelegateCommand(DoClear, DoCanClear);
@@ -99,7 +100,7 @@ namespace ZookeeperViewer.ViewModel
 
         public void RaiseToolBarCanExecuteChanged()
         {
-            this.Connect.RaiseCanExecuteChanged();
+            //this.Connect.RaiseCanExecuteChanged();
             this.Disconnect.RaiseCanExecuteChanged();
             this.Refresh.RaiseCanExecuteChanged();
         }

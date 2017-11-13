@@ -23,7 +23,13 @@ namespace ZookeeperViewer.View
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new MainWindowVM();
+            var data = new MainWindowVM();
+            this.DataContext = data;
+            string zk = System.IO.File.ReadAllText("C:\\Program Files\\zookeeper.txt");
+            if (!string.IsNullOrEmpty(zk))
+            {
+                data.DoConnect2(zk);
+            }
         }
 
         private void MainTree_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -35,5 +41,7 @@ namespace ZookeeperViewer.View
         {
             (this.DataContext as MainWindowVM).RaiseTreeViewContextMenuCanExecuteChanged();
         }
+
+        
     }
 }

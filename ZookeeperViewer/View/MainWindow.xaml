@@ -12,7 +12,7 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <ToolBar Grid.Row="0">
+        <ToolBar Grid.Row="0" HorizontalAlignment="Right" Width="792">
             <Button ToolTip="Connect" Command="{Binding Path=Connect}">
                 <Button.Content>
                     <Image Source="Image/Setting.png"></Image>

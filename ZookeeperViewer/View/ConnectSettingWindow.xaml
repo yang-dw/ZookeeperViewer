@@ -58,7 +58,7 @@
                 Grid.Column="0"
                 Click="btnOK_Click"
                 Command="{Binding Path=OK}"
-                Content="OK" />
+                Content="OK" Height="30" VerticalAlignment="Top" />
             <Button
                 x:Name="btnCancel"
                 Grid.Column="2"
